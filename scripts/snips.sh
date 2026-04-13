@@ -36,6 +36,7 @@ selection=$(rg --line-number --no-heading --color=always "^\s*#+ " . |
 if [ -n "$selection" ] ; then
     FILE=$(echo "$selection" | cut -d: -f1)
     LINE=$(echo "$selection" | cut -d: -f2)
+    TMP_FILE=$(mktemp)
     awk -v start="$LINE" '
         NR < start { next }
         NR > start && /^#+ / { exit }
@@ -45,5 +46,8 @@ if [ -n "$selection" ] ; then
             next
         }
         in_block { print }
-    ' "$FILE" | $clipboard
+    ' "$FILE" > "$TMP_FILE"
+    vim "$TMP_FILE"
+    # cat "$TMP_FILE" | $clipboard # TODO fixme
+    rm "$TMP_FILE"
 fi
