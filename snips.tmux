@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
- 
+
 key_option="@snips-key"
+popup_flags_option="@snips-popup-flags"
 dir_option="@snips-dir"
 
 default_key='C-q'
@@ -22,11 +23,7 @@ get_tmux_option() {
 launch() {
     local key=$(get_tmux_option $key_option $default_key)
     local dir=$(get_tmux_option $dir_option)
-    tmux bind-key "$key" display-popup -EE "$snips_script $dir"
+    tmux bind-key "$key" display-popup -EE $(get_tmux_option $popup_flags_option) "$snips_script $dir"
 }
 
-main() {
-    launch
-}
-
-main
+launch
