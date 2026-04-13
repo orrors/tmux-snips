@@ -3,12 +3,8 @@
 key_option="@snips-key"
 
 default_key='C-q'
-default_snips_dir="$CURRENT_DIR/scripts/snips.sh"
-default_snips_dir="$CURRENT_DIR/scripts/snips.sh"
-
-
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
+default_snips_dir="$CURRENT_DIR/scripts/snips.sh"
 
 get_tmux_option() {
     local option="$1"
