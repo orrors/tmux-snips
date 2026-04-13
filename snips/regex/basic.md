@@ -2,42 +2,40 @@
 
 ## 1. Basic Atoms
 
-| Pattern | Meaning |
-|--------|--------|
-| `.` | Any character except newline |
-| `\a` | Alphabetic character |
-| `\d` | Digit |
-| `\x` | Hex digit |
-| `\o` | Octal digit |
-| `\w` | Word character (letters, digits, underscore) |
-| `\W` | Non-word character |
-| `\s` | Whitespace |
-| `\S` | Non-whitespace |
+ | Pattern  | Meaning                                      |
+ | -------- | --------                                     |
+ | `.`      | Any character except newline                 |
+ | `\a`     | Alphabetic character                         |
+ | `\d`     | Digit                                        |
+ | `\x`     | Hex digit                                    |
+ | `\o`     | Octal digit                                  |
+ | `\w`     | Word character (letters, digits, underscore) |
+ | `\W`     | Non-word character                           |
+ | `\s`     | Whitespace                                   |
+ | `\S`     | Non-whitespace                               |
 
----
 
 ## 2. Character Classes
 
-| Pattern | Meaning |
-|--------|--------|
-| `[abc]` | Match a, b, or c |
-| `[^abc]` | Not a, b, or c |
-| `[a-z]` | Range |
-| `\_s` | Whitespace including newline |
-| `\_w` | Word character including newline |
+ | Pattern  | Meaning                          |
+ | -------- | --------                         |
+ | `[abc]`  | Match a, b, or c                 |
+ | `[^abc]` | Not a, b, or c                   |
+ | `[a-z]`  | Range                            |
+ | `\_s`    | Whitespace including newline     |
+ | `\_w`    | Word character including newline |
 
----
 
 ## 3. Quantifiers
 
-| Pattern | Meaning |
-|--------|--------|
-| `*` | 0 or more |
-| `\+` | 1 or more |
-| `\=` | 0 or 1 |
-| `\{n}` | Exactly n |
-| `\{n,m}` | Between n and m |
-| `\{-}` | Non-greedy match |
+ | Pattern  | Meaning          |
+ | -------- | --------         |
+ | `*`      | 0 or more        |
+ | `\+`     | 1 or more        |
+ | `\=`     | 0 or 1           |
+ | `\{n}`   | Exactly n        |
+ | `\{n,m}` | Between n and m  |
+ | `\{-}`   | Non-greedy match |
 
 Example:
 
@@ -46,25 +44,22 @@ Example:
 ```
 Match one or more word characters.
 
----
-
 ## 4. Anchors
 
-| Pattern | Meaning |
-|--------|--------|
-| `^` | Start of line |
-| `$` | End of line |
-| `\<` | Start of word |
-| `\>` | End of word |
+ | Pattern  | Meaning       |
+ | -------- | --------      |
+ | `^`      | Start of line |
+ | `$`      | End of line   |
+ | `\<`     | Start of word |
+ | `\>`     | End of word   |
 
----
 
 ## 5. Groups and Alternation
 
-| Pattern | Meaning |
-|--------|--------|
-| `\( ... \)` | Group |
-| `\|` | OR |
+ | Pattern     | Meaning  |
+ | --------    | -------- |
+ | `\( ... \)` | Group    |
+ | `\|`        | OR       |
 
 Example:
 
@@ -73,7 +68,6 @@ Example:
 ```
 Matches "cat" or "dog".
 
----
 
 ## 6. Lookaheads and Lookbehinds
 
@@ -117,7 +111,6 @@ Match numbers only if followed by "px".
 ```
 Match numbers only if preceded by "$".
 
----
 
 ## 7. Magic Modes
 
@@ -137,7 +130,6 @@ Example:
 ```
 Cleaner syntax (no need to escape `+`).
 
----
 
 ## 8. Substitution Tricks
 
@@ -159,8 +151,6 @@ Use very magic:
 ```vim
 :%s/\v(\w+) (\w+)/\2 \1/g
 ```
-
----
 
 ## 9. Practical Examples
 
@@ -193,8 +183,6 @@ Use very magic:
 ```vim
 /\v<.*?>
 ```
-
----
 
 ## Tips
 
