@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
  
 key_option="@snips-key"
+dir_option="@snips-dir"
 
 default_key='C-q'
+
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-default_snips_dir="$CURRENT_DIR/scripts/snips.sh"
+snips_script="$CURRENT_DIR/scripts/snips.sh"
 
 get_tmux_option() {
     local option="$1"
@@ -19,7 +21,8 @@ get_tmux_option() {
 
 launch() {
     local key=$(get_tmux_option $key_option $default_key)
-    tmux bind-key "$key" display-popup -EE "$default_snips_dir"
+    local dir=$(get_tmux_option $dir_option)
+    tmux bind-key "$key" display-popup -EE "$snips_script $dir"
 }
 
 main() {
