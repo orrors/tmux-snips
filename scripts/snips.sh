@@ -42,19 +42,20 @@ edit_before_copy() {
 export -f edit_before_copy
 # }}}
 
-selection=$(rg --line-number --no-heading --color=always "^\s*##+ " . |
+selection=$(rg --line-number --no-heading --color=always "^\s*##+ " . | sed $'s/.*\/\([^./]\+\).md/\033[1;35m\\1\033[m:&/;s/##\+//' |
   fzf --ansi \
       --layout=reverse \
+      --with-nth=1,4.. \
       --delimiter : \
-      --preview "awk -v start={2} \"NR >= start { if (NR > start && \\\$0 ~ /^#+ /) exit; print }\" {1} | ${previewer}" \
+      --preview "awk -v start={3} \"NR >= start { if (NR > start && \\\$0 ~ /^#+ /) exit; print }\" {2} | ${previewer}" \
       --preview-window=right:60%:wrap \
       --header=$'\033[1;33mctrl-e\033[m: edit file | \033[1;33mctrl-y\033[m: edit before copy' \
-      --bind 'ctrl-e:execute(${editor} -R +{2} {1})+abort' \
-      --bind 'ctrl-y:execute(edit_before_copy {1} {2})+abort')
+      --bind 'ctrl-e:execute(${editor} -R +{3} {2})+abort' \
+      --bind 'ctrl-y:execute(edit_before_copy {2} {3})+abort')
 
 if [ -n "$selection" ] ; then
-    FILE=$(echo "$selection" | cut -d: -f1)
-    LINE=$(echo "$selection" | cut -d: -f2)
+    FILE=$(echo "$selection" | cut -d: -f2)
+    LINE=$(echo "$selection" | cut -d: -f3)
     awk -v start="$LINE" '
         NR < start { next }
         NR > start && /^#+ / { exit }
