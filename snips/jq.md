@@ -3,53 +3,55 @@
 ## Compact output
 
 ```bash
-jq -c '.' file.json
-```
-
-## Select a field
-
-```bash
-jq '.name' file.json
+jq -c '.'
 ```
 
 ## Select Multiple fields
 
 ```bash
-jq '{name: .name, age: .age}' file.json
+jq '{name: .fullname, age}'
 ```
 
 ## Filter based on conditions
 
 ```bash
-jq '.users[] | select(.age > 25)' file.json
+jq '.users[] | select(.age > 25 and .age < 40)'
 ```
 
 ## Rename fields
 
 ```bash
-jq '{username: .name, userage: .age}' file.json
+jq '{username: .name, userage: .age}'
 ```
 
 ## Modify field values
 
 ```bash
-jq '.age = .age + 1' file.json
+jq '.users[] | .age = .age + 1'
 ```
 
 ## Delete a field
 
 ```bash
-jq 'del(.password)' file.json
+jq '.users[] | del(.password)'
 ```
 
-## array length
+## Array length
 
 ```bash
-jq '.users | length' file.json
+jq '.users | length'
 ```
 
 ## Map array values
 
 ```bash
-jq '.users | map(.name)' file.json
+jq '.users | map(.name)'
+```
+
+## Create json with variables
+
+Usefull for inserting special characters into a json
+
+```bash
+jq -n --arg css 'complex-string' '{custom:$css}'
 ```
