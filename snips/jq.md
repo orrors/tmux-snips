@@ -6,7 +6,7 @@
 jq -c '.'
 ```
 
-## Select Multiple fields
+## Select Multiple fields (or rename)
 
 ```bash
 jq '{name: .fullname, age}'
@@ -16,12 +16,6 @@ jq '{name: .fullname, age}'
 
 ```bash
 jq '.users[] | select(.age > 25 and .age < 40)'
-```
-
-## Rename fields
-
-```bash
-jq '{username: .name, userage: .age}'
 ```
 
 ## Modify field values

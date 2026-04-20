@@ -1,6 +1,6 @@
 # VIM Regex
 
-## 1. Basic Atoms
+## Basic Atoms
 
  | Pattern  | Meaning                                      |
  | -------- | --------                                     |
@@ -15,7 +15,7 @@
  | `\S`     | Non-whitespace                               |
 
 
-## 2. Character Classes
+## Character Classes
 
  | Pattern  | Meaning                          |
  | -------- | --------                         |
@@ -26,7 +26,7 @@
  | `\_w`    | Word character including newline |
 
 
-## 3. Quantifiers
+## Quantifiers
 
  | Pattern  | Meaning          |
  | -------- | --------         |
@@ -44,7 +44,7 @@ Example:
 ```
 Match one or more word characters.
 
-## 4. Anchors
+## Anchors
 
  | Pattern  | Meaning       |
  | -------- | --------      |
@@ -54,7 +54,7 @@ Match one or more word characters.
  | `\>`     | End of word   |
 
 
-## 5. Groups and Alternation
+## Groups and Alternation
 
  | Pattern     | Meaning  |
  | --------    | -------- |
@@ -69,7 +69,7 @@ Example:
 Matches "cat" or "dog".
 
 
-## 6. Lookaheads and Lookbehinds
+## Lookaheads and Lookbehinds
 
 ### Lookahead (match ahead without consuming)
 
@@ -112,7 +112,7 @@ Match numbers only if followed by "px".
 Match numbers only if preceded by "$".
 
 
-## 7. Magic Modes
+## Magic Modes
 
 Vim regex changes behavior depending on "magic" settings.
 
@@ -131,7 +131,7 @@ Example:
 Cleaner syntax (no need to escape `+`).
 
 
-## 8. Substitution Tricks
+## Substitution Tricks
 
 Basic substitution:
 
@@ -152,7 +152,7 @@ Use very magic:
 :%s/\v(\w+) (\w+)/\2 \1/g
 ```
 
-## 9. Practical Examples
+## Practical Examples
 
 ### Match email-like strings
 
