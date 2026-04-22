@@ -68,10 +68,7 @@ Example:
 ```
 Matches "cat" or "dog".
 
-
-## Lookaheads and Lookbehinds
-
-### Lookahead (match ahead without consuming)
+## Lookahead (match ahead without consuming)
 
 | Pattern | Meaning |
 |--------|--------|
@@ -85,7 +82,7 @@ Example:
 ```
 Match "foo" only if followed by "bar".
 
-### Lookbehind (match behind without consuming)
+## Lookbehind (match behind without consuming)
 
 | Pattern | Meaning |
 |--------|--------|
@@ -111,7 +108,6 @@ Match numbers only if followed by "px".
 ```
 Match numbers only if preceded by "$".
 
-
 ## Magic Modes
 
 Vim regex changes behavior depending on "magic" settings.
@@ -130,8 +126,16 @@ Example:
 ```
 Cleaner syntax (no need to escape `+`).
 
+## Match email-like strings
 
-## Substitution Tricks
+```vim
+/\v\w+@\w+\.\w+
+```
+================================================================================================
+
+# Other VIM stuff
+
+## Substitution
 
 Basic substitution:
 
@@ -139,7 +143,7 @@ Basic substitution:
 :%s/pattern/replacement/g
 ```
 
-Capture groups:
+## Substitution with capture groups:
 
 ```vim
 :%s/\(\w\+\) \(\w\+\)/\2 \1/g
@@ -152,48 +156,47 @@ Use very magic:
 :%s/\v(\w+) (\w+)/\2 \1/g
 ```
 
-## Practical Examples
-
-### Match email-like strings
-
-```vim
-/\v\w+@\w+\.\w+
-```
-
-### Remove trailing whitespace
+## Remove trailing whitespace
 
 ```vim
 :%s/\s\+$//g
 ```
 
-### Find lines NOT containing a word
+## Delete lines with pattern
+
+```vim
+:g/pattern/d
+```
+
+Delete lines that don't match
 
 ```vim
 :v/pattern/d
 ```
 
-### Match HTML tags
+## Delete lines with pattern into buffer
+
+This basically runs the normal command `"Add` on every match which appends to the 'a register.
+Paste the copied items with `"ap`
 
 ```vim
-/\v<\w+>.*<\/\w+>
+:g/pattern/normal "Add
 ```
 
-### Non-greedy match example
+## Copy lines with pattern into buffer
 
 ```vim
-/\v<.*?>
+:g/pattern/normal "Ayy
 ```
 
-## Tips
-
-- Use `\v` (very magic) for simpler patterns
-- Use `\zs` and `\ze` to define match boundaries
-
-Example:
+## Run macro on matching lines
 
 ```vim
-/\vfoo\zsbar
+:g/pattern/normal @q
 ```
-Only "bar" is highlighted.
 
+## Run macro on all quickfix positions
 
+```vim
+:cdo normal @q
+```
