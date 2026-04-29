@@ -15,7 +15,7 @@ jq '{name: .fullname, age}'
 ## Filter based on conditions
 
 ```bash
-jq '.users[] | select(.age > 25 and .age < 40)'
+jq '.users[] | select(.age > 25 and .name == "John")'
 ```
 
 ## Modify field values
